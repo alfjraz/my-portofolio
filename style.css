@@ -1,3 +1,135 @@
+/* ===== BACKGROUND GRADASI ANIMASI UNTUK BERANDA (PASTI BERFUNGSI) ===== */
+
+/* Ini akan menimpa semua style hero yang sudah ada */
+.hero {
+    background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4) !important;
+    background-size: 400% 400% !important;
+    animation: gradientBG 10s ease infinite !important;
+    position: relative !important;
+}
+
+/* Animasi gradient */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50% !important;
+    }
+    25% {
+        background-position: 50% 25% !important;
+    }
+    50% {
+        background-position: 100% 50% !important;
+    }
+    75% {
+        background-position: 50% 75% !important;
+    }
+    100% {
+        background-position: 0% 50% !important;
+    }
+}
+
+/* Hapus semua background lain yang mungkin menimpa */
+.hero::before,
+.hero::after {
+    display: none !important;
+}
+
+/* ===== PARTIKEL BULAT KECIL ===== */
+
+/* Container partikel */
+#hero-particles {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* Styling partikel */
+.hero-particle {
+    position: absolute !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+    z-index: 1 !important;
+}
+
+/* Animasi partikel */
+@keyframes floatParticle {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translateY(-40px) translateX(20px) scale(1.2);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-60px) translateX(-20px) scale(1.5);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-30px) translateX(15px) scale(1.2);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.2;
+    }
+}
+
+@keyframes spinParticle {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.8);
+        opacity: 0.9;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.3;
+    }
+}
+
+@keyframes blinkParticle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(2);
+    }
+}
+
+/* Overlay gelap untuk teks */
+.hero-dark-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* Pastikan konten di atas partikel */
+.hero .container {
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+/* Untuk mobile */
+@media (max-width: 768px) {
+    .hero-particle {
+        opacity: 0.5 !important;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -880,4 +1012,920 @@ footer i {
     .contact-form {
         padding: 20px;
     }
+}
+
+/* ===== ANIMASI TAMBAHAN ===== */
+
+/* Animasi saat klik link */
+.nav-menu a.clicked,
+.btn.clicked,
+.project-link.clicked,
+.social-links a.clicked {
+    animation: clickEffect 0.3s ease-out;
+}
+
+@keyframes clickEffect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animasi fade in saat scroll */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variasi fade in dengan delay */
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Animasi background bergerak untuk setiap section */
+
+/* Hero section dengan animasi gradient */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        #667eea,
+        #764ba2,
+        #2563eb,
+        #1e40af,
+        #667eea,
+        #764ba2
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    z-index: -1;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+    z-index: -1;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* About section dengan floating particles */
+.about {
+    position: relative;
+    overflow: hidden;
+}
+
+.about .floating-particle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.about .particle {
+    position: absolute;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatAround 20s linear infinite;
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(100px, 50px) rotate(120deg);
+    }
+    66% {
+        transform: translate(50px, 100px) rotate(240deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+/* Skills section dengan moving lines */
+.skills {
+    position: relative;
+    overflow: hidden;
+}
+
+.skills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: moveLine 8s linear infinite;
+}
+
+.skills::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: moveLineReverse 8s linear infinite;
+}
+
+@keyframes moveLine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes moveLineReverse {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+/* Projects section dengan grid background */
+.projects {
+    position: relative;
+    overflow: hidden;
+}
+
+.projects .grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes moveGrid {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+/* Certificates section dengan rotating circles */
+.certificates {
+    position: relative;
+    overflow: hidden;
+}
+
+.certificates .rotating-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 2px solid rgba(37, 99, 235, 0.1);
+    border-radius: 50%;
+    top: -150px;
+    right: -150px;
+    animation: rotate 20s linear infinite;
+}
+
+.certificates .rotating-circle::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Experience section dengan timeline animation */
+.timeline-item {
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px) scale(1.02);
+}
+
+.timeline-dot {
+    animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+}
+
+/* Contact section dengan wave effect */
+.contact {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact .wave-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%);
+    animation: wave 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+/* Hover effect untuk semua card dengan animasi */
+.project-card, .certificate-card, .soft-skill {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover, .certificate-card:hover, .soft-skill:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+}
+
+/* Loading animation untuk konten */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Stagger animation untuk grid items */
+.projects-grid .project-card:nth-child(1) { transition-delay: 0.1s; }
+.projects-grid .project-card:nth-child(2) { transition-delay: 0.2s; }
+.projects-grid .project-card:nth-child(3) { transition-delay: 0.3s; }
+.projects-grid .project-card:nth-child(4) { transition-delay: 0.4s; }
+
+.certificates-slider .certificate-card:nth-child(1) { transition-delay: 0.1s; }
+.certificates-slider .certificate-card:nth-child(2) { transition-delay: 0.2s; }
+.certificates-slider .certificate-card:nth-child(3) { transition-delay: 0.3s; }
+.certificates-slider .certificate-card:nth-child(4) { transition-delay: 0.4s; }
+.certificates-slider .certificate-card:nth-child(5) { transition-delay: 0.5s; }
+.certificates-slider .certificate-card:nth-child(6) { transition-delay: 0.6s; }
+
+/* Animasi untuk skill bars */
+.progress {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmerProgress 2s infinite;
+}
+
+@keyframes shimmerProgress {
+    100% {
+        left: 100%;
+    }
+}
+
+/* Parallax effect untuk background */
+.parallax-bg {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Efek hover untuk tombol */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animasi untuk social media icons */
+.social-links a {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    transition: top 0.3s ease;
+    z-index: -1;
+}
+
+.social-links a:hover::before {
+    top: 0;
+}
+
+/* Animasi fade in untuk section headers */
+.section-header {
+    position: relative;
+}
+
+.section-header .underline {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-header .underline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: underlineShimmer 3s infinite;
+}
+
+@keyframes underlineShimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+/* ===== ANIMASI BACKGROUND GRADASI BERANDA YANG SUDAH DIPERBAIKI ===== */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4158D0, #C850C0, #FFCC70) !important;
+    background-size: 300% 300% !important;
+    animation: gradientBG 10s ease infinite !important;
+}
+
+/* Hapus semua hero::before dan hero::after yang sebelumnya */
+.hero::before {
+    display: none;
+}
+
+/* Tambahkan overlay gelap agar teks tetap terbaca */
+.hero::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    z-index: 0 !important;
+    display: block !important;
+    animation: none !important;
+}
+
+/* Pastikan konten hero berada di atas overlay */
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Animasi gradient sederhana yang berfungsi */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 50% 25%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 75%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Efek partikel sederhana */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-30px) translateX(-10px);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-15px) translateX(15px);
+        opacity: 0.5;
+    }
+}
+
+/* Efek lingkaran berputar */
+.hero-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 20%;
+    right: 10%;
+    z-index: 1;
+    animation: rotateCircle 20s linear infinite;
+}
+
+.hero-circle::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-circle {
+        width: 150px;
+        height: 150px;
+        right: 5%;
+    }
+    
+    .hero-circle::before {
+        width: 25px;
+        height: 25px;
+        top: -12px;
+    }
+}
+
+/* ===== ANIMASI PARTIKEL BULAT KECIL UNTUK BERANDA ===== */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Container untuk partikel */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Styling partikel bulat kecil */
+.hero-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+/* Animasi partikel bergerak naik turun */
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-40px) translateX(-10px);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-20px) translateX(15px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.2;
+    }
+}
+
+/* Animasi partikel berputar */
+@keyframes rotateParticle {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Animasi partikel bergerak zigzag */
+@keyframes zigzag {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(30px, -20px);
+    }
+    50% {
+        transform: translate(60px, 0);
+    }
+    75% {
+        transform: translate(30px, 20px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Animasi partikel bergerak melingkar */
+@keyframes circleMove {
+    0% {
+        transform: rotate(0deg) translateX(30px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(30px) rotate(-360deg);
+    }
+}
+
+/* Animasi partikel berkedip */
+@keyframes twinkleParticle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* Partikel dengan ukuran berbeda-beda */
+.hero-particle.small {
+    width: 4px;
+    height: 4px;
+}
+
+.hero-particle.medium {
+    width: 8px;
+    height: 8px;
+}
+
+.hero-particle.large {
+    width: 12px;
+    height: 12px;
+}
+
+.hero-particle.xlarge {
+    width: 16px;
+    height: 16px;
+}
+
+/* Partikel dengan warna berbeda */
+.hero-particle.white {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-particle.blue {
+    background: rgba(100, 150, 255, 0.6);
+}
+
+.hero-particle.purple {
+    background: rgba(200, 130, 255, 0.6);
+}
+
+.hero-particle.gold {
+    background: rgba(255, 215, 0, 0.6);
+}
+
+/* Efek glow pada partikel */
+.hero-particle.glow {
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* Responsif untuk mobile - kurangi jumlah partikel */
+@media (max-width: 768px) {
+    .hero-particle {
+        opacity: 0.4;
+    }
+}
+
+/* ===== BACKGROUND GRADASI ANIMASI UNTUK BERANDA ===== */
+
+.hero {
+    position: relative;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Animasi gradient bergerak */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Overlay gelap agar teks terbaca */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+/* Pastikan konten di atas overlay */
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== PARTIKEL BULAT KECIL ===== */
+
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Animasi partikel */
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translateY(-30px) translateX(15px);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-50px) translateX(-15px);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-30px) translateX(10px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.2;
+    }
+}
+
+@keyframes particleRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.5);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes particlePulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+/* Alternatif jika animasi tidak jalan */
+.hero {
+    position: relative;
+    background: linear-gradient(135deg, #4158D0, #C850C0, #FFCC70);
+    background-size: 300% 300%;
+    animation: gradientBG 8s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 25%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 75%; }
+    100% { background-position: 0% 50%; }
 }
